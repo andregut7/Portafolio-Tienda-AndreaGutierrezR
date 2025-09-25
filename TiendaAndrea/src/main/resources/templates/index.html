@@ -3,40 +3,16 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
-    <head>
-        <title>Tech Shop</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
-       
-        
-    </head>
-    <body>
-        
-        <header>
-           
-            
-            <nav>
-                <a class="logo nav-link" href="/">TechShop</a>
-                <ul class="nav-menu">
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/ejemplo2">Mis Autos</a></li>
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/multimedia">Multimedia</a></li>
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/iframes">iFrames</a></li>
-                </ul>
-            </nav>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"      
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     
-        </header>
-
-        <section>
-            
-            <h2> Esta es la tienda en linea del curso </h2>
-            
-        </section>
-        <footer>
-           Todos los Derechos Reservados
-            
-        </footer>
+    <head th:replace="~{general/fragmentos :: head}"/>
+    <body>
+            <header th:replace="~{general/fragmentos :: header}"/>
+        
+            <footer th:replace="~{general/fragmentos :: footer}"/>
         
     </body>
 </html>
+ 
