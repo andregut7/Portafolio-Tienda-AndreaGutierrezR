@@ -1,42 +1,54 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html>      <!-- Define que el documento es un archivo HTML5. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:th="http://www.thymeleaf.org"      
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <!-- Inicia el documento HTML y define espacios de nombres XML -->
+    
     <head th:fragment="head">
+        <!-- Inicia la sección <head> y la define como un fragmento reutilizable llamado head en Thymeleaf. -->
+         
         <title>TechShop</title>
-        <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <meta charset="UTF-8"/> <!-- Define el conjunto de caracteres como UTF-8 para soportar acentos y otros caracteres especiales
+        -->
+        
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/> <!-- Importa el CSS de Bootstrap desde WebJars usando Thymeleaf (@{} genera la URL). -->
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/> <!-- Importa los iconos de Font Awesome desde WebJars. -->
+        
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>        
+        <!-- Importan las librerías JavaScript necesarias para el funcionamiento de Bootstrap (jQuery, Popper y Bootstrap JS). -->
     </head>
+     
+      
     <body>
-        <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-sm p-0">
-                <div class="container">                    
-                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
-                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
+        <header th:fragment="header" class="header"> <!-- Define un fragmento llamado header, reutilizable con Thymeleaf, y le da la clase CSS header. -->
+            <nav class="navbar navbar-expand-sm p-0"> <!-- Crea una barra de navegación con Bootstrap (navbar-expand-sm para que colapse en pantallas pequeñas, y sin padding). -->
+                <div class="container">          <!-- Contenedor Bootstrap que centraliza el contenido -->          
+                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a> <!-- Logo o título del sitio que redirige al inicio (/). El texto se toma de un archivo de mensajes (.properties) internacionalizado. -->
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"> <!-- Botón para colapsar el menú en móviles. -->
+                        <span class="navbar-toggler-icon"></span> <!-- Ícono del botón colapsable. -->
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" 
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse"> <!-- Contenedor del menú colapsable y dividido en dos secciones (menú principal e idioma/sesión). -->
+                        <ul class="navbar-nav"> <!-- Lista de enlaces de navegación (menú principal). --> 
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li> <!-- Opción del menú para ver categorías. El texto es internacionalizado. -->
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li> <!-- Opción para productos. -->
+                            <li class="nav-item dropdown"> <!-- Menú desplegable "Extras". -->
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"  <!-- Título del menú desplegable. -->
                                    aria-expanded="false">[[#{plantilla.extras}]]</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
+                                <ul class="dropdown-menu"> <!-- Submenú con dos opciones: Asociaciones y Consultas-->
+                                    <li><a class="dropdown-item" th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li> 
                                     <li><a class="dropdown-item" th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown"> <!-- Menú desplegable "Admin". -->
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     [[#{plantilla.admin}]]</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>                                    
-                                    <li class="submenu submenu-md dropend">
+                                    <li><a class="dropdown-item" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>  
+                                    
+                                    <li class="submenu submenu-md dropend"> <!-- Submenú lateral para Seguridad. -->
                                         <a class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                            onclick="event.stopPropagation();">
                                             [[#{plantilla.seguridad}]]
@@ -51,7 +63,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav"> <!-- Desplegable para seleccionar idioma de la aplicación. -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     [[#{plantilla.idioma}]]</a>
@@ -60,6 +72,7 @@
                                     <li><a class="dropdown-item" th:href="@{/(lang=en)}">English</a></li>
                                     <li><a class="dropdown-item" th:href="@{/(lang=fr)}">Française</a></li>
                                     <li><a class="dropdown-item" th:href="@{/(lang=pt)}">Portugaise</a></li>
+                                    <!-- Cambian el idioma de la app con una variable lang. -->
                                 </ul>
                             </li>
                         </ul>
@@ -68,7 +81,7 @@
                     </div>
                 </div>
             </nav>
-            <section id="main-header" class="py-2 bg-success text-white">
+            <section id="main-header" class="py-2 bg-success text-white"> <!-- Sección con fondo verde (Bootstrap bg-success), texto blanco, y padding vertical. -->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -79,8 +92,8 @@
             </section>
         </header>
 
-        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
-            <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
+        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white"> <!-- Fragmento reutilizable de Thymeleaf para el pie de página, con fondo celeste (bg-info). -->
+            <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p> <!-- Muestra un mensaje de derechos reservados en el centro. -->
         </footer>
     </body>
 </html>
