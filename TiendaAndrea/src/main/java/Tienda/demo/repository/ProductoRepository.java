@@ -5,10 +5,10 @@
 
 package Tienda.demo.repository;
 
-/**
- *
- * @author andre
- */
-public interface ProductoRepository {
+import Tienda.demo.domain.Producto;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+    List<Producto> findByActivoTrue();
 }
