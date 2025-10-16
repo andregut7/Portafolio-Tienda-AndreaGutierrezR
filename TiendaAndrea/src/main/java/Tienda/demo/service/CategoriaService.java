@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+//es la logica de los servicios, que si hago un 2x1 me cobran 1, puedo agregar, modificar, etc, esta capa funciona
+//por dominio (preenta la bse de datos) y el respositorio hace una lista de todo lo que hay en una BD
+//controlador y modeledos, conexion de vistas
+//pther sources esta todo lo del front end
+
 package Tienda.demo.service;
 
 import Tienda.demo.domain.Categoria;

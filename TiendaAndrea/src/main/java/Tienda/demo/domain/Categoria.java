@@ -1,5 +1,7 @@
 package Tienda.demo.domain;
 
+//es un esqueleto para presentar algo, explica la bd al codigo, esta es mi tabla etc..el domain preenta como el java al sql
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -7,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 //import java.util.List;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Entity
@@ -49,5 +52,10 @@ public class Categoria implements Serializable {
         this.descripcion = descripcion;
         this.activo = activo;
     }
+    
+    // Relación de uno a muchos con la clase Producto
+    // Sin "cascade" ni "orphanRemoval" para evitar la propagación de operaciones.
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 }
  

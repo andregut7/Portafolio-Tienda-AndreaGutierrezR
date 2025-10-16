@@ -5,6 +5,7 @@
 
 package Tienda.demo.controller;
 
+//conexion de los end points con las vistas
 
 import Tienda.demo.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
