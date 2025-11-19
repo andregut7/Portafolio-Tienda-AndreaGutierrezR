@@ -42,7 +42,7 @@
                      <!-- Contenedor del menú colapsable y dividido en dos secciones (menú principal e idioma/sesión). -->
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse"> 
                         <!-- Lista de enlaces de navegación (menú principal). --> 
-                        <ul class="navbar-nav"> 
+                       <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR') or hasRole('ROLE_ADMIN')">
                             <!-- Opción del menú para ver categorías. El texto es internacionalizado. -->
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li> 
                             <!-- Opción para productos. -->
@@ -50,7 +50,7 @@
                          <!-- menu de extras para filtrar-->
                        <li class="nav-item px-2"><a class="nav-link" th:href="@{/consultas/listado}">[[#{plantilla.consultas}]]</a></li>               
                              <!-- Menú desplegable "Admin". -->
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     [[#{plantilla.admin}]]</a>
                                 <ul class="dropdown-menu">
@@ -97,7 +97,8 @@
                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                             <li class="nav-item my-auto">
                                 <a class="nav-link">
-                                    <i class="fas fa-user"></i>
+                                    <img th:src="@{${session.imagenUsuario}}" 
+                                         alt="your image" height="40" class="rounded-circle"/>
                                     <span sec:authentication="name" class="ms-1"></span>
                                 </a>
                             </li>
